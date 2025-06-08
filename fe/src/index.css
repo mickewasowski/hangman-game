@@ -3,6 +3,7 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 
+	--very-dark-navy: rgb(20,14,102);
 	--navy: rgb(38, 22, 118);
 	--navy-transparent: rgba(38, 22, 118, 0.7);
 	--dark-navy: rgb(0,20,121);
