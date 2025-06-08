@@ -1,6 +1,12 @@
 .BaseModal {
-  width: 30rem;
-  height: 30rem;
+  width: 40vw;
+  height: 50vh;
+  min-width: 40rem;
+  min-height: 30rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -18,7 +24,7 @@
   border-start-end-radius: 60px;
   border-start-start-radius: 60px;
   background: linear-gradient(to bottom,
-      var(--dark-blue),
+      var(--dark-blue) 5%,
       var(--dark-navy-transparent));
 
   &:before {
@@ -26,8 +32,8 @@
     display: block;
     width: 101%;
     height: 102%;
-    position: relative;
-    bottom: 3%;
+    position: absolute;
+    bottom: -2%;
     left: 50%;
     transform: translate(-50%);
     border-style: solid;
@@ -44,10 +50,35 @@
   }
 
   header {
-    display: none;
+    position: absolute;
+    top: -25%;
+    left: 50%;
+    transform: translate(-50%);
   }
 
   main {
-    display: none;
+    width: 50%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+
+/* Mobile (small devices) */
+@media (max-width: 600px) {
+  .BaseModal {
+    width: 90vw;
+    height: 60vh;
+  }
+}
+
+/* Tablet (medium devices) */
+@media (min-width: 601px) and (max-width: 900px) {
+  .BaseModal {
+    width: 80vw;
+    height: 60vh;
   }
 }
