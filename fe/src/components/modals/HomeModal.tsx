@@ -13,11 +13,11 @@ export const HomeModal = () => {
         </div>
       }
       children={
-        <div>
-          <button style={{ background: "none", border: "none" }}>
+        <div className="HomeModal__buttons-section">
+          <button className="HomeModal__buttons-section__circle-play-button">
             <IconPlay />
           </button>
-          <button>How to play</button>
+          <button className="HomeModal__buttons-section__how-to-play">How to play</button>
         </div>
       }
     />

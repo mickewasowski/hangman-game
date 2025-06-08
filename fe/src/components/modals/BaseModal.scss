@@ -57,6 +57,8 @@
   .BaseModal {
     width: 90vw;
     height: 60vh;
+    min-width: unset;
+    min-height: unset;
   }
 }
 
@@ -65,5 +67,7 @@
   .BaseModal {
     width: 80vw;
     height: 60vh;
+    min-width: unset;
+    min-height: unset;
   }
 }
