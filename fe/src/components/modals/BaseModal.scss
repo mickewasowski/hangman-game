@@ -1,0 +1,53 @@
+.BaseModal {
+  width: 30rem;
+  height: 30rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-style: solid;
+  border-width: 15px 5px 0px 5px;
+  border-color: red;
+  border-top-right-radius: 50px;
+  border-top-left-radius: 50px;
+  border-top-color: var(--blue);
+  border-left-color: var(--blue);
+  border-right-color: var(--blue);
+  border-end-end-radius: 80px;
+  border-end-start-radius: 80px;
+  border-start-end-radius: 60px;
+  border-start-start-radius: 60px;
+  background: linear-gradient(to bottom,
+      var(--dark-blue),
+      var(--dark-navy-transparent));
+
+  &:before {
+    content: "";
+    display: block;
+    width: 101%;
+    height: 102%;
+    position: relative;
+    bottom: 3%;
+    left: 50%;
+    transform: translate(-50%);
+    border-style: solid;
+    border-width: 0px 3px 15px 3px;
+    border-bottom-color: var(--dark-navy);
+    border-left-color: var(--dark-navy);
+    border-right-color: var(--dark-navy);
+    border-end-end-radius: 90px;
+    border-end-start-radius: 90px;
+    border-start-end-radius: 0px;
+    border-start-start-radius: 0px;
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+  }
+
+  header {
+    display: none;
+  }
+
+  main {
+    display: none;
+  }
+}
