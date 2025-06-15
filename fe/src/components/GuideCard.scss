@@ -8,16 +8,22 @@
   width: 20rem;
   border-radius: 10%;
   background-color: var(--white);
+  gap: 3rem;
 
   &__index {
     font-size: 2rem;
     color: var(--blue);
+
+    h1 {
+      margin: 0;
+    }
   }
 
   &__title {
     font-size: 2.4rem;
 
     h3 {
+      margin: 0;
       font-weight: 100;
       text-transform: uppercase;
       color: var(--navy);
@@ -29,5 +35,57 @@
     color: var(--light-purple);
     letter-spacing: 1px;
     text-align: center;
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+
+
+/* Mobile (small devices) */
+@media (max-width: 600px) {
+  .GuideCard {
+    padding: 3rem 2rem;
+    height: 14rem;
+    width: 12rem;
+    justify-content: flex-start;
+    gap: 1rem;
+
+    &__index {
+      font-size: 1.5rem;
+    }
+
+    &__title {
+      font-size: 1.8rem;
+    }
+
+    &__content {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+/* Tablet (medium devices) */
+@media (min-width: 601px) and (max-width: 900px) {
+  .GuideCard {
+    padding: 3rem 2rem;
+    height: 17rem;
+    width: 15rem;
+    justify-content: flex-start;
+    gap: 1rem;
+
+    &__index {
+      font-size: 1.7rem;
+    }
+
+    &__title {
+      font-size: 2rem;
+    }
+
+    &__content {
+      font-size: 1.5rem;
+    }
   }
 }
