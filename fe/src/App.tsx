@@ -1,12 +1,16 @@
 import "./App.scss";
-import { HomeModal } from "./components/modals/HomeModal";
-import { GuideCard } from "./components/GuideCard";
+import {Route, Routes} from "react-router-dom";
+import HomeView from "./views/HomeView";
 
 function App() {
   return (
     <div className="App">
-      {/* <HomeModal /> */}
-      <GuideCard index={0o1} title={'Choose a category'} content={'LLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumorem ipsum'}/>
+      <Routes>
+        <Route path="/" element={<HomeView />}/>
+        <Route path="/how-to-play" />
+        <Route path="/categories" />
+        <Route path="/gameplay" />
+      </Routes>
     </div>
   );
 }
