@@ -40,3 +40,21 @@
     }
   }
 }
+
+/* Mobile (small devices) */
+@media (max-width: 600px) {
+  .HomeModal {
+    main {
+      justify-content: center;
+    }
+  }
+}
+
+/* Tablet (medium devices) */
+@media (min-width: 601px) and (max-width: 900px) {
+  .HomeModal {
+    main {
+      justify-content: center; 
+    }
+  }
+}
