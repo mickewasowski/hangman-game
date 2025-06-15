@@ -1,9 +1,11 @@
 import { BaseModal } from "./BaseModal";
 import logo from "../../assets/logo.svg";
-import IconPlay from "../../assets/icon-play.svg?react";
+import IconPlay from "../../assets/play.svg?react";
 import "./HomeModal.scss";
 
 export const HomeModal = () => {
+  // TODO: use the component for the icon button instead
+
   return (
     <BaseModal
       classNames={'HomeModal'}
