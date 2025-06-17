@@ -12,6 +12,9 @@
     gap: 4rem;
 
     &__circle-play-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 13rem;
       height: 13rem;
       border-radius: 50%;
@@ -20,9 +23,18 @@
       border-width: 0px 3px 10px 3px;
       background: linear-gradient(to bottom, var(--pink), var(--light-blue) 70%);
       box-shadow: inset 0px -8px 0px 5px var(--purple);
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+      }
     }
 
     &__how-to-play {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
       width: 15rem;
       height: 3.5rem;
       border-radius: 60px;
@@ -37,6 +49,13 @@
       border-color: var(--very-dark-navy);
       border-style: solid;
       border-width: 1px 2px 5px 2px;
+
+      &:hover {
+        cursor: pointer;
+        box-shadow: inset 0px 2px 0px 1px var(--white-transparent-50);
+        background-color: var(--light-blue);
+        transform: scale(1.1);
+      }
     }
   }
 }

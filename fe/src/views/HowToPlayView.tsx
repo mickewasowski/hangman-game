@@ -1,4 +1,8 @@
 import { GuideCard } from "../components/GuideCard";
+import "./HowToPlayView.scss";
+import BackIcon from "../assets/back.svg?react";
+import { Link } from "react-router-dom";
+
 
 const HowToPlayView = () => {
 
@@ -23,9 +27,20 @@ const HowToPlayView = () => {
   return (
   <div className="HowToPlayView">
       <header className="HowToPlayView__header">
-        <button></button>
+        <Link className="HowToPlayView__header__back" to={'/'}>
+          <BackIcon />
+        </Link>
         <h1>How to Play</h1>
       </header>
+      <main>
+        {
+          rules.map((el, index) => {
+              return (
+                <GuideCard key={index} index={el.index} title={el.title} content={el.content} />
+              )
+          })
+        }
+      </main>
     </div>
   )
 }
