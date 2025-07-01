@@ -24,27 +24,37 @@
     
 
     h1 {
+      position: relative;
       margin: 0 auto;
       font-size: 8rem;
-      font-weight: 700;
       color: transparent;
-      // -webkit-text-stroke: 6px var(--dark-graphite);
-      background: -webkit-linear-gradient(var(--light-blue), var(--white));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      position: relative;
+      z-index: 2;
 
       &:before {
         content: attr(data-text);
-        color: var(--dark-graphite);
-        width: 120%;
-        height: 120%;
-        display: inline-block;
-        line-height: 100%;
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        top: 0;
+        left: 0;
+        z-index: -1;
+        font-size: 9rem;
+        color: var(--dark-graphite);
+        white-space: nowrap;
+        -webkit-text-stroke: 12px var(--dark-graphite);
+      }
+
+      &:after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 9rem;
+        font-weight: 400;
+        white-space: nowrap;
+        color: transparent;
+        background: -webkit-linear-gradient(var(--light-blue), var(--white));
+        -webkit-background-clip: text;
+        z-index: 1;
+        -webkit-text-fill-color: transparent;
       }
     }
   }
