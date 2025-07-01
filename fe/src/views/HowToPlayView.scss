@@ -4,6 +4,7 @@
   &__header {
     display: flex;
     align-items: center;
+    margin-bottom: 2rem;
     
     &__back {
       display: flex;
@@ -23,15 +24,28 @@
     
 
     h1 {
-      margin-left: auto;
-      margin-right: auto;
+      margin: 0 auto;
       font-size: 8rem;
       font-weight: 700;
       color: transparent;
-      -webkit-text-stroke: 6px var(--dark-graphite);
+      // -webkit-text-stroke: 6px var(--dark-graphite);
       background: -webkit-linear-gradient(var(--light-blue), var(--white));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      position: relative;
+
+      &:before {
+        content: attr(data-text);
+        color: var(--dark-graphite);
+        width: 120%;
+        height: 120%;
+        display: inline-block;
+        line-height: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
     }
   }
 

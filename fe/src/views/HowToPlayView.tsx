@@ -30,7 +30,7 @@ const HowToPlayView = () => {
         <Link className="HowToPlayView__header__back" to={'/'}>
           <BackIcon />
         </Link>
-        <h1>How to Play</h1>
+        <h1 data-text="How to Play">How to Play</h1>
       </header>
       <main>
         {
