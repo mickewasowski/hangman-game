@@ -9,20 +9,22 @@
   &__header {
     display: flex;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
     justify-content: space-between;
     width: 90%;
     padding: 0 1vw;
     max-width: 1400px;
-    
+
     &__back {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 5rem; 
+      width: 5rem;
       height: 5rem;
       border-radius: 50%;
-      background: linear-gradient(to bottom, var(--pink), var(--light-blue) 70%);
+      background: linear-gradient(to bottom,
+          var(--pink),
+          var(--light-blue) 70%);
       box-shadow: inset 0px -8px 0px 2px var(--light-purple-transparent);
 
       svg {
@@ -30,7 +32,6 @@
         height: 2.2rem;
       }
     }
-    
 
     h1 {
       position: relative;
@@ -60,7 +61,8 @@
         font-weight: 400;
         white-space: nowrap;
         color: transparent;
-        background: -webkit-linear-gradient(var(--baby-blue) 40%, var(--white) 60%);
+        background: -webkit-linear-gradient(var(--baby-blue) 40%,
+            var(--white) 60%);
         -webkit-background-clip: text;
         z-index: 1;
         -webkit-text-fill-color: transparent;
@@ -75,5 +77,133 @@
     width: 90%;
     padding: 0 1vw;
     max-width: 1400px;
+  }
+}
+
+/* Mobile (small devices) */
+@media (max-width: 600px) {
+  .HowToPlayView {
+    padding-top: 2rem;
+    align-items: center;
+    justify-items: center;
+
+    &__header {
+      margin-bottom: 1rem;
+
+      &__back {
+        width: 3rem;
+        height: 3rem;
+
+        svg {
+          width: 1.6rem;
+          height: 1.6rem;
+        }
+      }
+
+      h1 {
+        font-size: 4rem;
+
+        &:before,
+        &:after {
+          font-size: 4rem;
+        }
+      }
+    }
+
+    main {
+      flex-direction: column;
+      justify-content: unset;
+      align-items: center;
+      height: max-content;
+
+      .GuideCard {
+        width: 90%;
+        height: 10%;
+        flex-direction: row;
+        border-radius: 1rem;
+        gap: 1rem;
+        align-items: center;
+        padding: 1rem;
+
+        &__index {
+          margin-top: unset;
+          font-size: 1rem;
+        }
+
+        & > div {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+
+          .GuideCard__title h3,
+          .GuideCard__content p {
+            text-align: left;
+            font-size: 1rem;
+          }
+
+          .GuideCard__title {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+
+            h3 {
+              font-size: 1.5rem;
+            }
+          }
+        }
+      }
+    }
+
+  }
+}
+
+/* Tablet (medium devices) */
+@media (min-width: 601px) and (max-width: 900px) {
+  .HowToPlayView {
+    &__header {
+      &__back {
+        width: 4rem;
+        height: 4rem;
+      }
+
+      h1 {
+        font-size: 6rem;
+
+        &:before,
+        &:after {
+          font-size: 6rem;
+        }
+      }
+    }
+
+    main {
+      flex-direction: column;
+      justify-content: unset;
+      align-items: center;
+
+      .GuideCard {
+        width: 80%;
+        height: 10%;
+        flex-direction: row;
+        border-radius: 2rem;
+        gap: 2rem;
+        align-items: center;
+
+        &__index {
+          margin-top: unset;
+        }
+
+        & > div {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+
+          .GuideCard__title h3,
+          .GuideCard__content p {
+            text-align: left;
+          }
+        }
+      }
+    }
   }
 }
