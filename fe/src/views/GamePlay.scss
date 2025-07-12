@@ -4,4 +4,81 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &__main {
+    &__words {
+      display: flex;
+      flex-wrap: wrap;
+
+      &__word {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 0.5rem;
+
+        &__letter {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 5rem;
+          height: 6rem;
+          color: var(--white);
+          background-color: var(--blue);
+          border-radius: 1.5rem;
+          border-style: solid;
+          border-color: var(--navy);
+          border-width: 0px 2px 4px 2px;
+          box-shadow: inset 0px 4px 0px 2px var(--lighter-blue);
+          text-transform: uppercase;
+          font-family: "MouseMemoirs-Regular";
+          font-size: 3rem;
+
+          &--inactive {
+            opacity: 0.4;
+          }
+        }
+
+        &__spacer {
+          display: inline-block;
+          width: 5rem;
+          height: 6rem;
+          opacity: 0;
+        }
+      }
+    }
+
+    &__alphabet {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+
+      &__letter-btn {
+        display: inline-block;
+        width: 5rem;
+        height: 4rem;
+        background-color: var(--white);
+        border: none;
+        color: var(--navy);
+        border-radius: 1rem;
+        text-transform: uppercase;
+        font-family: "MouseMemoirs-Regular";
+        font-size: 2rem;
+
+        &:hover {
+          cursor: pointer;
+          background-color: var(--lighter-blue);
+          color: var(--white);
+        }
+
+        &--disabled {
+          opacity: 0.3;
+
+          &:hover {
+            cursor: initial;
+            color: var(--navy);
+            background-color: var(--white);
+          }
+        }
+      }
+    }
+  }
 }
