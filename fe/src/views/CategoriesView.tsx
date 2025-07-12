@@ -1,5 +1,5 @@
 import "./CategoriesView.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BackIcon from "../assets/back.svg?react";
 import Button from "../components/Button.tsx";
 
@@ -8,8 +8,12 @@ interface IProps {
 }
 
 const CategoriesView = ({ categories }: IProps) => {
+  const navigate = useNavigate();
+
   const handlePickCategory = (category: string): void => {
     //TODO: implement picking and applying the category
+    //set the global state's category prop
+    navigate('/gameplay');
   };
 
   return (
