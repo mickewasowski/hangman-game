@@ -35,6 +35,11 @@
   }
 
   header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
     position: absolute;
     top: -25%;
     left: 50%;
@@ -52,17 +57,6 @@
   }
 }
 
-
-/* Mobile (small devices) */
-@media (max-width: 600px) {
-  .BaseModal {
-    width: 90vw;
-    height: 60vh;
-    min-width: unset;
-    min-height: unset;
-  }
-}
-
 /* Tablet (medium devices) */
 @media (min-width: 601px) and (max-width: 900px) {
   .BaseModal {
@@ -70,5 +64,15 @@
     height: 60vh;
     min-width: unset;
     min-height: unset;
+  }
+}
+
+/* Mobile (small devices) */
+@media (max-width: 600px) {
+  .BaseModal {
+    width: 90vw;
+    height: 60vh;
+    min-width: 20rem;
+    min-height: 10rem;
   }
 }

@@ -1,5 +1,14 @@
-
 .HomeModal {
+  &__logo-wrapper {
+    display: inline-block;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
   main {
     justify-content: flex-end;
   }
@@ -21,7 +30,9 @@
       border-color: var(--dark-graphite);
       border-style: solid;
       border-width: 0px 3px 10px 3px;
-      background: linear-gradient(to bottom, var(--pink), var(--light-blue) 70%);
+      background: linear-gradient(to bottom,
+          var(--pink),
+          var(--light-blue) 70%);
       box-shadow: inset 0px -8px 0px 5px var(--purple);
 
       &:hover {
@@ -60,20 +71,42 @@
   }
 }
 
-/* Mobile (small devices) */
-@media (max-width: 600px) {
+/* Tablet (medium devices) */
+@media (min-width: 601px) and (max-width: 900px) {
   .HomeModal {
+    height: 35rem;
+
+    header {
+      top: -20%;
+    }
+
+    &__logo-wrapper {
+      width: 75%;
+      max-width: 23rem;
+    }
+    
     main {
       justify-content: center;
     }
   }
 }
 
-/* Tablet (medium devices) */
-@media (min-width: 601px) and (max-width: 900px) {
+/* Mobile (small devices) */
+@media (max-width: 600px) {
   .HomeModal {
+    height: 30rem;
+    
+    header {
+      top: -15%;
+    }
+
+    &__logo-wrapper {
+      width: 75%;
+      max-width: 15rem;
+    }
+
     main {
-      justify-content: center; 
+      justify-content: center;
     }
   }
 }

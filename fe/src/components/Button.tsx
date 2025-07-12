@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import "./Button.scss";
+import type { ReactNode } from "react";
 
 interface IProps {
-  icon?: string;
+  icon?: ReactNode;
   text?: string;
   routeTo?: string;
   clickHandler?: () => void;
@@ -13,7 +14,7 @@ const Button = ({icon, text, routeTo, clickHandler, classNames}: IProps) => {
   const navigate = useNavigate();
 
 
-  const handleClick = (event) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
     if (routeTo) {
