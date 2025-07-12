@@ -48,10 +48,10 @@
         top: 0;
         left: 0;
         z-index: -1;
-        font-size: 9rem;
+        font-size: 8rem;
         color: var(--dark-graphite);
         white-space: nowrap;
-        -webkit-text-stroke: 12px var(--dark-graphite);
+        -webkit-text-stroke: 10px var(--dark-graphite);
       }
 
       &:after {
@@ -59,15 +59,17 @@
         position: absolute;
         top: 0;
         left: 0;
-        font-size: 9rem;
+        font-size: 8rem;
         font-weight: 400;
         white-space: nowrap;
         color: transparent;
-        background: -webkit-linear-gradient(
-          var(--baby-blue) 40%,
-          var(--white) 60%
+        background: linear-gradient(
+          to bottom,
+          var(--baby-blue) 0%,
+          var(--baby-blue) 35%,
+          var(--white) 100%
         );
-        -webkit-background-clip: text;
+        background-clip: text;
         z-index: 1;
         -webkit-text-fill-color: transparent;
       }
@@ -87,7 +89,11 @@
 /* Tablet (medium devices) */
 @media (min-width: 601px) and (max-width: 1000px) {
   .HowToPlayView {
+    justify-content: flex-start;
+
     &__header {
+      margin-top: 1rem;
+      
       &__back {
         width: 4rem;
         height: 4rem;
@@ -114,12 +120,13 @@
 /* Mobile (small devices) */
 @media (max-width: 600px) {
   .HowToPlayView {
-    padding-top: 2rem;
     align-items: center;
     justify-items: center;
+    justify-content: flex-start;
 
     &__header {
       margin-bottom: 1rem;
+      margin-top: 1rem;
 
       &__back {
         width: 3rem;
