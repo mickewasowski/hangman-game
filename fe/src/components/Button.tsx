@@ -6,7 +6,7 @@ interface IProps {
   icon?: ReactNode;
   text?: string;
   routeTo?: string;
-  clickHandler?: () => void;
+  clickHandler?: () => void | Promise<void> | undefined;
   classNames?: string;
 }
 
