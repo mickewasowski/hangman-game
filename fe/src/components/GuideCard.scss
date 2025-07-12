@@ -1,14 +1,18 @@
 .GuideCard {
+  width: 100%;
+  max-width: 350px;
+  min-width: 260px;
+  aspect-ratio: 3/4;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   padding: 2rem 1rem;
-  height: 50vh;
-  width: 30%;
   border-radius: 10%;
   background-color: var(--white);
   gap: 1.5rem;
+  box-sizing: border-box;
 
   &__index {
     font-size: 2rem;
@@ -20,74 +24,121 @@
     }
   }
 
-  &__title {
-    font-size: 2.4rem;
-
-    h3 {
-      margin: 0;
-      font-weight: 100;
-      text-align: center;
-      text-transform: uppercase;
-      color: var(--navy);
-    }
-  }
-
-  &__content {
-    font-size: 1.6rem;
-    color: var(--light-purple);
-    letter-spacing: 1px;
-    text-align: center;
-
-    p {
-      margin: 0;
-    }
-  }
-}
-
-
-
-/* Mobile (small devices) */
-@media (max-width: 600px) {
-  .GuideCard {
-    padding: 3rem 2rem;
-    height: 14rem;
-    width: 12rem;
-    justify-content: flex-start;
-    gap: 1rem;
-
-    &__index {
-      font-size: 1.5rem;
-    }
-
+  &__content-wrapper {
     &__title {
-      font-size: 1.8rem;
+      font-size: 2.4rem;
+
+      h1 {
+        display: none;
+      }
+
+      h3 {
+        margin: 0;
+        font-weight: 100;
+        text-align: center;
+        text-transform: uppercase;
+        color: var(--navy);
+      }
     }
 
     &__content {
-      font-size: 1.2rem;
+      font-size: 1.6rem;
+      color: var(--light-purple);
+      letter-spacing: 1px;
+      text-align: center;
+
+      p {
+        margin: 0;
+      }
     }
   }
 }
 
 /* Tablet (medium devices) */
-@media (min-width: 601px) and (max-width: 900px) {
+@media (min-width: 601px) and (max-width: 1000px) {
   .GuideCard {
-    padding: 3rem 2rem;
-    height: 17rem;
-    width: 15rem;
     justify-content: flex-start;
-    gap: 1rem;
+    gap: 3rem;
+    max-width: unset;
+    max-height: 170px;
+    flex-direction: row;
+    border-radius: 2rem;
+    align-items: center;
 
     &__index {
-      font-size: 1.7rem;
-    }
-
-    &__title {
       font-size: 2rem;
+      padding-left: 1rem;
+      margin-top: unset;
     }
 
-    &__content {
-      font-size: 1.5rem;
+    &__content-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      &__title {
+        font-size: 2rem;
+
+        h1 {
+          display: none;
+        }
+      }
+
+      &__content {
+        font-size: 1.5rem;
+      }
+
+      &__title h3,
+      &__content p {
+        text-align: left;
+      }
+    }
+  }
+}
+
+/* Mobile (small devices) */
+@media (max-width: 600px) {
+  .GuideCard {
+    flex-direction: row;
+    border-radius: 1rem;
+    align-items: center;
+    padding: 1rem;
+    justify-content: flex-start;
+    gap: 1rem;
+    max-height: 150px;
+
+    &__index {
+      display: none;
+      margin-top: unset;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    &__content-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      &__title {
+        display: flex;
+        gap: 0.5rem;
+
+        h1 {
+          display: inline-block;
+          margin: 0;
+          font-size: 1.5rem;
+          color: var(--blue);
+        }
+
+        h3 {
+          font-size: 1.5rem;
+        }
+      }
+
+      &__content p {
+        text-align: left;
+        font-size: 1rem;
+      }
     }
   }
 }
