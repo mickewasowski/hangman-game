@@ -8,9 +8,10 @@ interface IProps {
   routeTo?: string;
   clickHandler?: () => void | Promise<void> | undefined;
   classNames?: string;
+  disabled?: boolean;
 }
 
-const Button = ({icon, text, routeTo, clickHandler, classNames}: IProps) => {
+const Button = ({icon, text, routeTo, clickHandler, classNames, disabled}: IProps) => {
   const navigate = useNavigate();
 
 
@@ -25,7 +26,7 @@ const Button = ({icon, text, routeTo, clickHandler, classNames}: IProps) => {
   }
 
   return (
-  <button className={classNames} onClick={handleClick}>{icon}{text}</button>
+  <button disabled={disabled} className={classNames} onClick={handleClick}>{icon}{text}</button>
   )
 }
 
