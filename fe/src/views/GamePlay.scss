@@ -28,6 +28,13 @@
             var(--light-blue) 80%);
         border: none;
         box-shadow: inset 0px -6px 0px 7px var(--light-purple-transparent);
+
+        &:hover {
+          cursor: pointer;
+          background: linear-gradient(to bottom,
+              var(--lighter-pink) 20%,
+              var(--light-blue-lighter) 80%);
+        }
       }
 
       &__title {
@@ -54,7 +61,7 @@
         border-radius: 5rem;
 
         &__score {
-          width: 100%; //TODO: this should be variable
+          // width: 100%; //TODO: this should be variable
           height: 1rem;
           background-color: var(--navy);
           border-radius: 1rem;

@@ -6,3 +6,11 @@ export type AlphabetLetter =
 
 export type GridOfLetters = AlphabetLetter[][];
 
+export enum InGameModal {
+  Pause,
+  Win,
+  Loose,
+};
+
+export type InGameModalTypes = InGameModal.Pause | InGameModal.Win | InGameModal.Loose;
+
