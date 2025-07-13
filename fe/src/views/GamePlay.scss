@@ -1,14 +1,80 @@
 .GamePlay {
   width: 90%;
+  height: 100%;
   margin: 0 auto;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
 
+  &__header {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
+
+    &__menu {
+      display: flex;
+      gap: 4rem;
+      justify-content: flex-start;
+      align-items: center;
+
+      &__menu-btn {
+        width: 6rem;
+        height: 6rem;
+        border-radius: 50%;
+        background: linear-gradient(to bottom,
+            var(--pink) 20%,
+            var(--light-blue) 80%);
+        border: none;
+        box-shadow: inset 0px -6px 0px 7px var(--light-purple-transparent);
+      }
+
+      &__title {
+        font-size: 4rem;
+        color: var(--white);
+        letter-spacing: 2px;
+      }
+    }
+
+    &__lives {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 3rem;
+      
+      &__healthbar-wrapper {
+        width: 15rem;
+        height: 1rem;
+        padding: 0.7rem;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: var(--white);
+        border-radius: 5rem;
+
+        &__score {
+          width: 100%; //TODO: this should be variable
+          height: 1rem;
+          background-color: var(--navy);
+          border-radius: 1rem;
+        }
+      }
+    }
+  }
+
   &__main {
+    margin-bottom: 10vh;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+
     &__words {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
 
       &__word {
         display: flex;
@@ -19,8 +85,8 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 5rem;
-          height: 6rem;
+          width: 6rem;
+          height: 7rem;
           color: var(--white);
           background-color: var(--blue);
           border-radius: 1.5rem;
@@ -30,7 +96,7 @@
           box-shadow: inset 0px 4px 0px 2px var(--lighter-blue);
           text-transform: uppercase;
           font-family: "MouseMemoirs-Regular";
-          font-size: 3rem;
+          font-size: 4rem;
 
           &--inactive {
             opacity: 0.4;
@@ -39,7 +105,7 @@
 
         &__spacer {
           display: inline-block;
-          width: 5rem;
+          width: 3rem;
           height: 6rem;
           opacity: 0;
         }
@@ -49,19 +115,19 @@
     &__alphabet {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 2rem;
 
       &__letter-btn {
         display: inline-block;
-        width: 5rem;
-        height: 4rem;
+        width: 7rem;
+        height: 5rem;
         background-color: var(--white);
         border: none;
         color: var(--navy);
         border-radius: 1rem;
         text-transform: uppercase;
         font-family: "MouseMemoirs-Regular";
-        font-size: 2rem;
+        font-size: 3rem;
 
         &:hover {
           cursor: pointer;

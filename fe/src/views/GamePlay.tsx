@@ -2,12 +2,15 @@ import { alphabetLetters, getCharGrid } from "../utils/Utils.ts";
 import Button from "../components/Button.tsx";
 import { type GridOfLetters, type AlphabetLetter } from "../types/Types.ts";
 import { useEffect, useState, type ReactNode } from "react";
+import MenuIcon from "../assets/menu.svg?react";
+import HeartIcon from "../assets/heart.svg?react";
 import "./GamePlay.scss";
 
 const GamePlay = () => {
   //TODO: get the selected category from the global state
   //fetch a word based on the selected category
   //show a loading spinner while fetching the word
+
   const [guessedLetters, setGuessedLetters] = useState<AlphabetLetter[]>([]);
   const [allLetters, setAllLetters] = useState<GridOfLetters>([]);
   const [allClickedLetters, setAllClickedLetters] = useState<AlphabetLetter[]>(
@@ -21,9 +24,6 @@ const GamePlay = () => {
   }, []);
 
   const handleLetterClick = (letter: AlphabetLetter): void => {
-    //TODO: check if the letter is contained in any of the words
-    //if yes mark the letter as disabled (slightly transparent)
-    //disable the button as well
     const included = isLetterInAllLetters(letter);
 
     if (included) {
@@ -31,6 +31,8 @@ const GamePlay = () => {
     }
 
     setAllClickedLetters([...allClickedLetters, letter]);
+
+    //TODO: implement logic for reducing the health bar if the guess was failed
   };
 
   const isLetterGuessed = (input: AlphabetLetter): boolean => {
@@ -76,20 +78,50 @@ const GamePlay = () => {
     ));
   };
 
+  const openModal = () => {
+    //TODO: this should open the pause modal
+  };
+
   return (
     <div className="GamePlay">
       <header className="GamePlay__header">
-        <div className="GamePlay__header__menu"></div>
-        <div className="GamePlay__header__lives"></div>
+
+
+
+        <div className="GamePlay__header__menu">
+          <Button
+            classNames={"GamePlay__header__menu__menu-btn"}
+            icon={<MenuIcon />}
+            clickHandler={() => openModal()}
+          />
+          {/* TODO: get the selected category from the global state */}
+          <h2 className="GamePlay__header__menu__title">{"Countries"}</h2>
+        </div>
+
+
+
+
+        <div className="GamePlay__header__lives">
+          <div className="GamePlay__header__lives__healthbar-wrapper">
+            <span className="GamePlay__header__lives__healthbar-wrapper__score"></span>
+          </div>
+          <div className="GamePlay__header__lives__heart">
+            <HeartIcon />
+          </div>
+        </div>
+
+
+
       </header>
       <main className="GamePlay__main">
         <div className="GamePlay__main__words">
           {renderAllWordsCharacterPlaceholders()}
         </div>
         <div className="GamePlay__main__alphabet">
-          {alphabetLetters.map((letter) => {
+          {alphabetLetters.map((letter, i) => {
             return (
               <Button
+                key={i}
                 disabled={isLetterClicked(letter)}
                 text={letter}
                 classNames={`GamePlay__main__alphabet__letter-btn ${isLetterClicked(letter) ? "GamePlay__main__alphabet__letter-btn--disabled" : ""}`}
