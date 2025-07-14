@@ -17,11 +17,13 @@
   --white-transparent-50: rgba(255,255,255,.5);
 	--pink: rgb(254, 113, 254);
 	--lighter-pink: rgb(254, 143, 254);
+	--whiteish-pink: rgb(254, 173, 254);
 	--light-blue: rgb(113, 153, 255);
 	--light-blue-lighter: rgb(133, 153, 255);
 	--light-blue-transparent: rgba(113, 153, 255, 0.5);
 	--black: rgb(0, 0, 0);
 	--purple: rgb(157, 45, 245);
+	--purple-lighter: rgb(210, 82, 215);
   --light-purple: rgb(136, 125, 192);
   --light-purple-transparent: rgba(157, 45, 245, .3);
 	--dark-graphite: rgb(36, 48, 65);

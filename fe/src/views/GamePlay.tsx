@@ -92,8 +92,7 @@ const GamePlay = () => {
   };
 
   const openModal = () => {
-    //TODO: this should open the pause modal
-    //simply set the state to pause modal
+    setModal(InGameModal.Pause);
   };
    
   const renderModal = () => {
