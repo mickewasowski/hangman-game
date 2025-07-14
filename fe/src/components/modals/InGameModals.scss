@@ -1,0 +1,158 @@
+//TODO: extract this in a global file
+@mixin titleWithShadow($font-size,
+  $text,
+  $text-color1,
+  $text-color2,
+  $shadow-color) {
+  font-size: $font-size;
+  color: transparent;
+
+  &:before {
+    content: attr($text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    font-size: $font-size;
+    color: $shadow-color;
+    white-space: nowrap;
+    -webkit-text-stroke: 10px $shadow-color;
+  }
+
+  &:after {
+    content: attr($text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: $font-size;
+    font-weight: 400;
+    white-space: nowrap;
+    color: transparent;
+    background: linear-gradient(to bottom,
+        $text-color1 0%,
+        $text-color1 35%,
+        $text-color2 100%);
+    background-clip: text;
+    z-index: 1;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+@mixin twoTypeBorder($top-border-color,
+  $top-border-x-offset,
+  $top-border-y-offset,
+  $top-border-blur-radius,
+  $top-border-spread-radius,
+  $bottom-border-color,
+  $bottom-border-top,
+  $bottom-border-right,
+  $bottom-border-bottom,
+  $bottom-border-left,
+  $top-border-hover-color) {
+  box-shadow: inset $top-border-x-offset $top-border-y-offset $top-border-blur-radius $top-border-spread-radius $top-border-color;
+  border-color: $bottom-border-color;
+  border-style: solid;
+  border-width: $bottom-border-top $bottom-border-right $bottom-border-bottom $bottom-border-left;
+
+  &:hover {
+    box-shadow: inset $top-border-x-offset $top-border-y-offset $top-border-blur-radius $top-border-spread-radius $top-border-hover-color;
+  }
+}
+
+.PauseModal {
+  header {
+    top: -20%;
+  }
+
+  &__header {
+    &__title {
+      position: relative;
+      z-index: 2;
+      margin: 0 auto;
+      @include titleWithShadow(8rem,
+        data-text,
+        var(--baby-blue),
+        var(--white),
+        var(--dark-graphite));
+    }
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    &__button {
+      display: inline-block;
+      width: 15rem;
+      height: 3.5rem;
+      border-radius: 3rem;
+      @include twoTypeBorder(var(--light-blue-transparent),
+        0,
+        4px,
+        0,
+        2px,
+        var(--very-dark-navy),
+        1px,
+        2px,
+        5px,
+        2px,
+        var(--white-transparent-50));
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      font-weight: 500;
+      letter-spacing: 2px;
+      color: var(--white);
+      background-color: var(--blue);
+      font-family: "MouseMemoirs-Regular";
+
+      &:hover {
+        cursor: pointer;
+        background-color: var(--light-blue);
+        transform: scale(1.1);
+      }
+
+      &--quit {
+        background-color: var(--purple-lighter);
+        
+        @include twoTypeBorder(var(--lighter-pink),
+          0,
+          4px,
+          0,
+          2px,
+          var(--very-dark-navy),
+          1px,
+          2px,
+          5px,
+          2px,
+          var(--purple-lighter));
+
+        &:hover {
+          background-color: var(--whiteish-pink);
+        }
+      }
+    }
+  }
+}
+
+/* Tablet (medium devices) */
+@media (min-width: 601px) and (max-width: 900px) {
+  .PauseModal {
+    height: 45vh;
+    
+    header {
+      top: -20%;
+    }
+  }
+}
+
+/* Mobile (small devices) */
+@media (max-width: 600px) {
+  .PauseModal {
+    height: 40vh;
+    
+    header {
+      top: -25%;
+    }
+  }
+}
