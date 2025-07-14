@@ -5,13 +5,22 @@ interface IProps {
   classNames?: string;
   header: ReactNode;
   children: ReactNode;
+  backdrop?: boolean;
 }
 
-export const BaseModal = ({ classNames, header, children }: IProps) => {
+export const BaseModal = ({
+  classNames,
+  header,
+  children,
+  backdrop,
+}: IProps) => {
   return (
-    <div className={classNames ? `BaseModal ${classNames}` : "BaseModal"}>
-      <header>{header}</header>
-      <main>{children}</main>
+    <div className="BaseModal__container">
+      {backdrop && <div className="BaseModal--backdrop"></div>}
+      <div className={classNames ? `BaseModal ${classNames}` : "BaseModal"}>
+        <header>{header}</header>
+        <main>{children}</main>
+      </div>
     </div>
   );
 };

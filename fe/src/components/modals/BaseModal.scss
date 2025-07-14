@@ -1,4 +1,18 @@
 .BaseModal {
+  &__container {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+  }
+
+  &--backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-color: var(--dark-blue-transparent);
+  }
+
+  z-index: 2;
   width: 40vw;
   height: 50vh;
   min-width: 40rem;
@@ -16,8 +30,8 @@
   border-color: var(--blue);
   border-radius: 60px 60px 80px 80px;
   background: linear-gradient(to bottom,
-      var(--dark-blue) 5%,
-      var(--dark-navy-transparent));
+    var(--dark-blue) 5%,
+    var(--dark-navy-transparent));
 
   &:before {
     content: "";
