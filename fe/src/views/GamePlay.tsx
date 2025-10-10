@@ -4,17 +4,19 @@ import { type GridOfLetters, type AlphabetLetter } from "../types/Types.ts";
 import { useEffect, useState, type ReactNode } from "react";
 import MenuIcon from "../assets/menu.svg?react";
 import HeartIcon from "../assets/heart.svg?react";
-import {InGameModal, type InGameModalTypes} from "../types/Types.ts";
+import { InGameModal, type InGameModalTypes } from "../types/Types.ts";
 import "./GamePlay.scss";
-import { LooseModal, PauseModal, WinModal } from "../components/modals/InGameModals.tsx";
+import {
+  LooseModal,
+  PauseModal,
+  WinModal,
+} from "../components/modals/InGameModals.tsx";
 
 const WRONG_GUESS_REDUCTION_INDEX = 12.5;
 const GamePlay = () => {
   //TODO: get the selected category from the global state
   //fetch a word based on the selected category
   //show a loading spinner while fetching the word
-
-  
 
   //TODO: update the modals state as follows:
   //1. keep track if he has guessed all the letters -> win modal
@@ -34,18 +36,35 @@ const GamePlay = () => {
     if (allLetters.length) return;
     const chars = getCharGrid("The Lion King");
     setAllLetters(chars);
+
+    window.addEventListener("keydown", handleKeypress);
   }, []);
+
+  const handleKeypress = (event) => {
+    event.preventDefault();
+    const pressedKey = event.key;
+
+    if (/^[a-zA-Z]$/.test(pressedKey)) {
+      handleLetterClick(pressedKey.toLowerCase() as AlphabetLetter);
+    }
+  };
 
   const handleLetterClick = (letter: AlphabetLetter): void => {
     const included = isLetterInAllLetters(letter);
 
     if (included) {
-      setGuessedLetters([...guessedLetters, letter]);
+      setGuessedLetters((prev) => {
+        return [...prev, letter];
+      });
     } else {
-      setScoreWidth(scoreWidth - WRONG_GUESS_REDUCTION_INDEX);
+      setScoreWidth((prev) => {
+        return prev - WRONG_GUESS_REDUCTION_INDEX;
+      });
     }
 
-    setAllClickedLetters([...allClickedLetters, letter]);
+    setAllClickedLetters((prev) => {
+      return [...prev, letter];
+    });
   };
 
   const isLetterGuessed = (input: AlphabetLetter): boolean => {
@@ -94,17 +113,17 @@ const GamePlay = () => {
   const openModal = () => {
     setModal(InGameModal.Pause);
   };
-   
+
   const renderModal = () => {
     switch (modal) {
       case InGameModal.Pause: {
-        return <PauseModal />; 
+        return <PauseModal />;
       }
       case InGameModal.Win: {
-        return <WinModal />; 
+        return <WinModal />;
       }
       case InGameModal.Loose: {
-        return <LooseModal />; 
+        return <LooseModal />;
       }
       default: {
         return null;
@@ -156,9 +175,7 @@ const GamePlay = () => {
           </div>
         </main>
       </div>
-      <>
-        {renderModal()}
-      </>
+      <>{renderModal()}</>
     </>
   );
 };
