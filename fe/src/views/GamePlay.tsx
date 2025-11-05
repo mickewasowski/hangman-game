@@ -28,7 +28,7 @@ const GamePlay = () => {
   );
   const [scoreWidth, setScoreWidth] = useState<number>(100);
   const [modal, setModal] = useState<InGameModalTypes | null>(null);
-  const {wordToGuess} = useGameContext();
+  const {wordToGuess, selectedCategory} = useGameContext();
 
   useEffect(() => {
     if (allLetters.length) return;
@@ -37,6 +37,20 @@ const GamePlay = () => {
 
     window.addEventListener("keydown", handleKeypress);
   }, []);
+
+  useEffect(() => {
+    if (guessedLetters.length === 0 || allLetters.flat().length === 0) return;
+
+    if (guessedLetters.length === allLetters.flat().length) {
+      setModal(InGameModal.Win);
+      return;
+    }
+
+    if (guessedLetters.length < allLetters.flat().length && scoreWidth === 0) {
+      setModal(InGameModal.Loose);
+      return;
+    }
+  }, [allClickedLetters]);
 
   const handleKeypress = (event) => {
     event.preventDefault();
@@ -59,6 +73,9 @@ const GamePlay = () => {
         return prev - WRONG_GUESS_REDUCTION_INDEX;
       });
     }
+
+    console.log(scoreWidth);
+    
 
     setAllClickedLetters((prev) => {
       return [...prev, letter];
@@ -143,8 +160,7 @@ const GamePlay = () => {
               icon={<MenuIcon />}
               clickHandler={() => openModal()}
             />
-            {/* TODO: get the selected category from the global state */}
-            <h2 className="GamePlay__header__menu__title">{"Countries"}</h2>
+            <h2 className="GamePlay__header__menu__title">{selectedCategory}</h2>
           </div>
           <div className="GamePlay__header__lives">
             <div className="GamePlay__header__lives__healthbar-wrapper">
