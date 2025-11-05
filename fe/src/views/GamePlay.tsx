@@ -112,10 +112,14 @@ const GamePlay = () => {
     setModal(InGameModal.Pause);
   };
 
+  const closeModal = () => {
+    setModal(null);
+  };
+
   const renderModal = () => {
     switch (modal) {
       case InGameModal.Pause: {
-        return <PauseModal />;
+        return <PauseModal handleCloseModal={closeModal} />;
       }
       case InGameModal.Win: {
         return <WinModal />;
