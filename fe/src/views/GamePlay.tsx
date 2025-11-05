@@ -11,13 +11,10 @@ import {
   PauseModal,
   WinModal,
 } from "../components/modals/InGameModals.tsx";
+import { useGameContext } from "../contexts/GameContext.tsx";
 
 const WRONG_GUESS_REDUCTION_INDEX = 12.5;
 const GamePlay = () => {
-  //TODO: get the selected category from the global state
-  //fetch a word based on the selected category
-  //show a loading spinner while fetching the word
-
   //TODO: update the modals state as follows:
   //1. keep track if he has guessed all the letters -> win modal
   //2. if scoreWidth goes to 0 -> loose modal
@@ -31,10 +28,11 @@ const GamePlay = () => {
   );
   const [scoreWidth, setScoreWidth] = useState<number>(100);
   const [modal, setModal] = useState<InGameModalTypes | null>(null);
+  const {wordToGuess} = useGameContext();
 
   useEffect(() => {
     if (allLetters.length) return;
-    const chars = getCharGrid("The Lion King");
+    const chars = getCharGrid(wordToGuess);
     setAllLetters(chars);
 
     window.addEventListener("keydown", handleKeypress);

@@ -2,17 +2,19 @@ import "./CategoriesView.scss";
 import { Link, useNavigate } from "react-router-dom";
 import BackIcon from "../assets/back.svg?react";
 import Button from "../components/Button.tsx";
+import { useGameContext } from "../contexts/GameContext.tsx";
 
 interface IProps {
   categories: string[];
 }
 
 const CategoriesView = ({ categories }: IProps) => {
+  const categoryNames = Object.keys(categories);
   const navigate = useNavigate();
+  const {setUserCategory} = useGameContext();
 
   const handlePickCategory = (category: string): void => {
-    //TODO: implement picking and applying the category
-    //set the global state's category prop
+    setUserCategory(category);
     navigate('/gameplay');
   };
 
@@ -26,7 +28,7 @@ const CategoriesView = ({ categories }: IProps) => {
       </header>
       <main className="CategoriesView__main">
         <div className="CategoriesView__main__categories-wrapper">
-          {categories.map((category, index) => {
+          {categoryNames.map((category, index) => {
             return (
               <Button
                 key={`${category}-${index}`}
