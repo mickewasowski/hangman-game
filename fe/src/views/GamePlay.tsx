@@ -36,6 +36,10 @@ const GamePlay = () => {
     setAllLetters(chars);
 
     window.addEventListener("keydown", handleKeypress);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeypress);
+    }
   }, []);
 
   useEffect(() => {

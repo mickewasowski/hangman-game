@@ -2,13 +2,7 @@ import { BaseModal } from "./BaseModal.tsx";
 import Button from "../Button.tsx";
 import "./InGameModals.scss";
 import { useNavigate } from "react-router-dom";
-
-//TODO: the below should have one common class InGameModal
-//this class should provide the basic structure of the component:
-//1. width
-//2. height
-//3. position
-//4. backdrop
+import { useGameContext } from "../../contexts/GameContext.tsx";
 
 interface IPauseProps {
   handleCloseModal: () => void;
@@ -32,13 +26,7 @@ const PauseModal = ({ handleCloseModal }: IPauseProps) => {
   return (
     <BaseModal
       backdrop={true}
-      header={
-        <div className="PauseModal__header">
-          <h3 className="PauseModal__header__title" data-text="Paused">
-            Paused
-          </h3>
-        </div>
-      }
+      headerTitle="Paused"
       classNames="PauseModal"
       children={
         <div className="PauseModal__main">
@@ -64,11 +52,89 @@ const PauseModal = ({ handleCloseModal }: IPauseProps) => {
 };
 
 const WinModal = () => {
-  return <BaseModal header={<></>} classNames="" children={<></>} />;
+  const navigate = useNavigate();
+  const { selectedCategory, setUserCategory } = useGameContext();
+
+  const quitGame = () => {
+    navigate("/");
+  };
+
+  const handlePlayAgain = () => {
+    setUserCategory(selectedCategory);
+  };
+
+  const newCategory = () => {
+    navigate("/categories");
+  };
+
+  return (
+    <BaseModal
+      headerTitle={"You Win"}
+      classNames="WinModal"
+      children={
+        <div>
+          <Button
+            classNames="WinModal__main__button"
+            text="play again!"
+            clickHandler={handlePlayAgain}
+          />
+          <Button
+            classNames="WinModal__main__button"
+            text="new category"
+            clickHandler={newCategory}
+          />
+          <Button
+            classNames="WinModal__main__button WinModal__main__button--quit"
+            text="quit game"
+            clickHandler={quitGame}
+          />
+        </div>
+      }
+    />
+  );
 };
 
 const LooseModal = () => {
-  return <BaseModal header={<></>} classNames="" children={<></>} />;
+  const navigate = useNavigate();
+  const { selectedCategory, setUserCategory } = useGameContext();
+
+  const quitGame = () => {
+    navigate("/");
+  };
+
+  const handlePlayAgain = () => {
+    setUserCategory(selectedCategory);
+  };
+
+  const newCategory = () => {
+    navigate("/categories");
+  };
+
+  return (
+    <BaseModal
+      headerTitle={"You Lose"}
+      classNames="LoseModal"
+      children={
+        <div>
+          <Button
+            classNames="LoseModal__main__button"
+            text="play again!"
+            clickHandler={handlePlayAgain}
+          />
+          <Button
+            classNames="LoseModal__main__button"
+            text="new category"
+            clickHandler={newCategory}
+          />
+          <Button
+            classNames="LoseModal__main__button LoseModal__main__button--quit"
+            text="quit game"
+            clickHandler={quitGame}
+          />
+        </div>
+      }
+    />
+  );
 };
 
 export { PauseModal, WinModal, LooseModal };

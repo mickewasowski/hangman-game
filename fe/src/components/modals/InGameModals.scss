@@ -1,43 +1,3 @@
-//TODO: extract this in a global file
-@mixin titleWithShadow($font-size,
-  $text,
-  $text-color1,
-  $text-color2,
-  $shadow-color) {
-  font-size: $font-size;
-  color: transparent;
-
-  &:before {
-    content: attr($text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    font-size: $font-size;
-    color: $shadow-color;
-    white-space: nowrap;
-    -webkit-text-stroke: 10px $shadow-color;
-  }
-
-  &:after {
-    content: attr($text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: $font-size;
-    font-weight: 400;
-    white-space: nowrap;
-    color: transparent;
-    background: linear-gradient(to bottom,
-        $text-color1 0%,
-        $text-color1 35%,
-        $text-color2 100%);
-    background-clip: text;
-    z-index: 1;
-    -webkit-text-fill-color: transparent;
-  }
-}
-
 @mixin twoTypeBorder($top-border-color,
   $top-border-x-offset,
   $top-border-y-offset,
@@ -62,19 +22,6 @@
 .PauseModal {
   header {
     top: -20%;
-  }
-
-  &__header {
-    &__title {
-      position: relative;
-      z-index: 2;
-      margin: 0 auto;
-      @include titleWithShadow(8rem,
-        data-text,
-        var(--baby-blue),
-        var(--white),
-        var(--dark-graphite));
-    }
   }
 
   &__main {
