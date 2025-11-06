@@ -51,7 +51,7 @@ const PauseModal = ({ handleCloseModal }: IPauseProps) => {
   );
 };
 
-const WinModal = () => {
+const WinModal = ({ playAgain }: {playAgain: () => void}) => {
   const navigate = useNavigate();
   const { selectedCategory, setUserCategory } = useGameContext();
 
@@ -61,6 +61,7 @@ const WinModal = () => {
 
   const handlePlayAgain = () => {
     setUserCategory(selectedCategory);
+    playAgain();
   };
 
   const newCategory = () => {
@@ -94,7 +95,7 @@ const WinModal = () => {
   );
 };
 
-const LooseModal = () => {
+const LooseModal = ({ playAgain }: {playAgain: () => void}) => {
   const navigate = useNavigate();
   const { selectedCategory, setUserCategory } = useGameContext();
 
@@ -104,6 +105,7 @@ const LooseModal = () => {
 
   const handlePlayAgain = () => {
     setUserCategory(selectedCategory);
+    playAgain();
   };
 
   const newCategory = () => {

@@ -78,11 +78,12 @@
     flex-direction: column;
     justify-content: space-between;
 
-
     &__words {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      gap: 1rem;
+      margin: 4rem 0;
 
       &__word {
         display: flex;
@@ -105,6 +106,7 @@
           text-transform: uppercase;
           font-family: "MouseMemoirs-Regular";
           font-size: 4rem;
+          margin: 0;
 
           &--inactive {
             opacity: 0.4;
@@ -124,6 +126,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 2rem;
+      justify-content: center;
 
       &__letter-btn {
         display: inline-block;

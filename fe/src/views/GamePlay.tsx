@@ -15,12 +15,6 @@ import { useGameContext } from "../contexts/GameContext.tsx";
 
 const WRONG_GUESS_REDUCTION_INDEX = 12.5;
 const GamePlay = () => {
-  //TODO: update the modals state as follows:
-  //1. keep track if he has guessed all the letters -> win modal
-  //2. if scoreWidth goes to 0 -> loose modal
-  //3. if he clicks menu button -> pause modal
-  //4. if necessary reset the state to null
-
   const [guessedLetters, setGuessedLetters] = useState<AlphabetLetter[]>([]);
   const [allLetters, setAllLetters] = useState<GridOfLetters>([]);
   const [allClickedLetters, setAllClickedLetters] = useState<AlphabetLetter[]>(
@@ -28,7 +22,7 @@ const GamePlay = () => {
   );
   const [scoreWidth, setScoreWidth] = useState<number>(100);
   const [modal, setModal] = useState<InGameModalTypes | null>(null);
-  const {wordToGuess, selectedCategory} = useGameContext();
+  const { wordToGuess, selectedCategory } = useGameContext();
 
   useEffect(() => {
     if (allLetters.length) return;
@@ -39,8 +33,8 @@ const GamePlay = () => {
 
     return () => {
       window.removeEventListener("keydown", handleKeypress);
-    }
-  }, []);
+    };
+  }, [wordToGuess]);
 
   useEffect(() => {
     if (guessedLetters.length === 0 || allLetters.flat().length === 0) return;
@@ -60,6 +54,8 @@ const GamePlay = () => {
     event.preventDefault();
     const pressedKey = event.key;
 
+    if (isLetterClicked(pressedKey)) return;
+
     if (/^[a-zA-Z]$/.test(pressedKey)) {
       handleLetterClick(pressedKey.toLowerCase() as AlphabetLetter);
     }
@@ -77,9 +73,6 @@ const GamePlay = () => {
         return prev - WRONG_GUESS_REDUCTION_INDEX;
       });
     }
-
-    console.log(scoreWidth);
-    
 
     setAllClickedLetters((prev) => {
       return [...prev, letter];
@@ -137,16 +130,24 @@ const GamePlay = () => {
     setModal(null);
   };
 
+  const resetStates = () => {
+    setGuessedLetters([]);
+    setAllLetters([]);
+    setAllClickedLetters([]);
+    setScoreWidth(100);
+    closeModal();
+  };
+
   const renderModal = () => {
     switch (modal) {
       case InGameModal.Pause: {
         return <PauseModal handleCloseModal={closeModal} />;
       }
       case InGameModal.Win: {
-        return <WinModal />;
+        return <WinModal playAgain={resetStates} />;
       }
       case InGameModal.Loose: {
-        return <LooseModal />;
+        return <LooseModal playAgain={resetStates} />;
       }
       default: {
         return null;
@@ -164,7 +165,9 @@ const GamePlay = () => {
               icon={<MenuIcon />}
               clickHandler={() => openModal()}
             />
-            <h2 className="GamePlay__header__menu__title">{selectedCategory}</h2>
+            <h2 className="GamePlay__header__menu__title">
+              {selectedCategory}
+            </h2>
           </div>
           <div className="GamePlay__header__lives">
             <div className="GamePlay__header__lives__healthbar-wrapper">

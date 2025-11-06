@@ -19,7 +19,9 @@
   }
 }
 
-.PauseModal {
+.PauseModal,
+.WinModal,
+.LoseModal {
   header {
     top: -20%;
   }
