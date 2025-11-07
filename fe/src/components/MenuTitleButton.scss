@@ -1,0 +1,31 @@
+.Menu {
+  display: flex;
+  gap: 4rem;
+  justify-content: flex-start;
+  align-items: center;
+
+  .button {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    background: linear-gradient(to bottom,
+        var(--pink) 20%,
+        var(--light-blue) 80%);
+    border: none;
+    box-shadow: inset 0px -6px 0px 7px var(--light-purple-transparent);
+
+    &:hover {
+      cursor: pointer;
+      background: linear-gradient(to bottom,
+          var(--lighter-pink) 20%,
+          var(--light-blue-lighter) 80%);
+    }
+  }
+
+  .title {
+    font-size: 4rem;
+    color: var(--white);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+}

@@ -2,7 +2,6 @@ import { alphabetLetters, getCharGrid } from "../utils/Utils.ts";
 import Button from "../components/Button.tsx";
 import { type GridOfLetters, type AlphabetLetter } from "../types/Types.ts";
 import { useEffect, useState, type ReactNode } from "react";
-import MenuIcon from "../assets/menu.svg?react";
 import HeartIcon from "../assets/heart.svg?react";
 import { InGameModal, type InGameModalTypes } from "../types/Types.ts";
 import "./GamePlay.scss";
@@ -12,6 +11,7 @@ import {
   WinModal,
 } from "../components/modals/InGameModals.tsx";
 import { useGameContext } from "../contexts/GameContext.tsx";
+import { MenuTitleButton } from "../components/MenuTitleButton.tsx";
 
 const WRONG_GUESS_REDUCTION_INDEX = 12.5;
 const GamePlay = () => {
@@ -21,8 +21,7 @@ const GamePlay = () => {
     [],
   );
   const [scoreWidth, setScoreWidth] = useState<number>(100);
-  const [modal, setModal] = useState<InGameModalTypes | null>(null);
-  const { wordToGuess, selectedCategory } = useGameContext();
+  const { wordToGuess, modal, toggleModal } = useGameContext();
 
   useEffect(() => {
     if (allLetters.length) return;
@@ -33,19 +32,20 @@ const GamePlay = () => {
 
     return () => {
       window.removeEventListener("keydown", handleKeypress);
+      toggleModal(null);
     };
-  }, [wordToGuess]);
+  }, [allLetters.length, wordToGuess]);
 
   useEffect(() => {
     if (guessedLetters.length === 0 || allLetters.flat().length === 0) return;
 
     if (guessedLetters.length === allLetters.flat().length) {
-      setModal(InGameModal.Win);
+      toggleModal(InGameModal.Win);
       return;
     }
 
     if (guessedLetters.length < allLetters.flat().length && scoreWidth === 0) {
-      setModal(InGameModal.Loose);
+      toggleModal(InGameModal.Loose);
       return;
     }
   }, [allClickedLetters]);
@@ -122,26 +122,18 @@ const GamePlay = () => {
     ));
   };
 
-  const openModal = () => {
-    setModal(InGameModal.Pause);
-  };
-
-  const closeModal = () => {
-    setModal(null);
-  };
-
   const resetStates = () => {
     setGuessedLetters([]);
     setAllLetters([]);
     setAllClickedLetters([]);
     setScoreWidth(100);
-    closeModal();
+    toggleModal(null);
   };
 
   const renderModal = () => {
-    switch (modal) {
+    switch (modal.type) {
       case InGameModal.Pause: {
-        return <PauseModal handleCloseModal={closeModal} />;
+        return <PauseModal handleCloseModal={() => toggleModal(null)} />;
       }
       case InGameModal.Win: {
         return <WinModal playAgain={resetStates} />;
@@ -159,16 +151,7 @@ const GamePlay = () => {
     <>
       <div className="GamePlay">
         <header className="GamePlay__header">
-          <div className="GamePlay__header__menu">
-            <Button
-              classNames={"GamePlay__header__menu__menu-btn"}
-              icon={<MenuIcon />}
-              clickHandler={() => openModal()}
-            />
-            <h2 className="GamePlay__header__menu__title">
-              {selectedCategory}
-            </h2>
-          </div>
+          <MenuTitleButton clickHandler={() => toggleModal(InGameModal.Pause)} />
           <div className="GamePlay__header__lives">
             <div className="GamePlay__header__lives__healthbar-wrapper">
               <span

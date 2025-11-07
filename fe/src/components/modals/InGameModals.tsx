@@ -2,7 +2,6 @@ import { BaseModal } from "./BaseModal.tsx";
 import Button from "../Button.tsx";
 import "./InGameModals.scss";
 import { useNavigate } from "react-router-dom";
-import { useGameContext } from "../../contexts/GameContext.tsx";
 
 interface IPauseProps {
   handleCloseModal: () => void;
@@ -51,7 +50,7 @@ const PauseModal = ({ handleCloseModal }: IPauseProps) => {
   );
 };
 
-const WinModal = ({ playAgain }: {playAgain: () => void}) => {
+const WinModal = ({ playAgain }: { playAgain: () => void }) => {
   const navigate = useNavigate();
   const { selectedCategory, setUserCategory } = useGameContext();
 
@@ -95,7 +94,7 @@ const WinModal = ({ playAgain }: {playAgain: () => void}) => {
   );
 };
 
-const LooseModal = ({ playAgain }: {playAgain: () => void}) => {
+const LooseModal = ({ playAgain }: { playAgain: () => void }) => {
   const navigate = useNavigate();
   const { selectedCategory, setUserCategory } = useGameContext();
 
