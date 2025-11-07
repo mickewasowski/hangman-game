@@ -1,0 +1,23 @@
+.HealthBar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 3rem;
+
+  .progress-bar {
+    width: 15rem;
+    height: 1rem;
+    padding: 0.7rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--white);
+    border-radius: 5rem;
+
+    .bar {
+      height: 1rem;
+      background-color: var(--navy);
+      border-radius: 1rem;
+    }
+  }
+}

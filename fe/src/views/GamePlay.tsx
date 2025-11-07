@@ -2,7 +2,6 @@ import { alphabetLetters, getCharGrid } from "../utils/Utils.ts";
 import Button from "../components/Button.tsx";
 import { type GridOfLetters, type AlphabetLetter } from "../types/Types.ts";
 import { useEffect, useState, type ReactNode } from "react";
-import HeartIcon from "../assets/heart.svg?react";
 import { InGameModal } from "../types/Types.ts";
 import "./GamePlay.scss";
 import {
@@ -12,6 +11,7 @@ import {
 } from "../components/modals/InGameModals.tsx";
 import { useGameContext } from "../contexts/GameContext.tsx";
 import { MenuTitleButton } from "../components/MenuTitleButton.tsx";
+import { HealthBar } from "../components/HealthBar.tsx";
 
 const WRONG_GUESS_REDUCTION_INDEX = 12.5;
 const GamePlay = () => {
@@ -154,17 +154,7 @@ const GamePlay = () => {
           <MenuTitleButton
             clickHandler={() => toggleModal(InGameModal.Pause)}
           />
-          <div className="GamePlay__header__lives">
-            <div className="GamePlay__header__lives__healthbar-wrapper">
-              <span
-                className="GamePlay__header__lives__healthbar-wrapper__score"
-                style={{ width: health + "%" }}
-              ></span>
-            </div>
-            <div className="GamePlay__header__lives__heart">
-              <HeartIcon />
-            </div>
-          </div>
+          <HealthBar />
         </header>
         <main className="GamePlay__main">
           <div className="GamePlay__main__words">

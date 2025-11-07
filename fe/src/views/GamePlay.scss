@@ -12,31 +12,6 @@
     height: 20%;
     display: flex;
     justify-content: space-between;
-
-    &__lives {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      gap: 3rem;
-      
-      &__healthbar-wrapper {
-        width: 15rem;
-        height: 1rem;
-        padding: 0.7rem;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        background-color: var(--white);
-        border-radius: 5rem;
-
-        &__score {
-          // width: 100%; //TODO: this should be variable
-          height: 1rem;
-          background-color: var(--navy);
-          border-radius: 1rem;
-        }
-      }
-    }
   }
 
   &__main {
