@@ -73,7 +73,7 @@ const WinModal = ({ playAgain }: { playAgain: () => void }) => {
       headerTitle={"You Win"}
       classNames="WinModal"
       children={
-        <div>
+        <div className="WinModal__main">
           <Button
             classNames="WinModal__main__button"
             text="play again!"
@@ -117,7 +117,7 @@ const LooseModal = ({ playAgain }: { playAgain: () => void }) => {
       headerTitle={"You Lose"}
       classNames="LoseModal"
       children={
-        <div>
+        <div className="LoseModal__main">
           <Button
             classNames="LoseModal__main__button"
             text="play again!"
