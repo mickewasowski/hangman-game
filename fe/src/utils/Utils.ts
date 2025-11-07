@@ -44,3 +44,24 @@ export const alphabetLetters: AlphabetLetter[] = [
   "y",
   "z",
 ];
+
+export const isLetterGuessed = (inputLetter: AlphabetLetter, guessedLetters: AlphabetLetter[]): boolean => {
+  return guessedLetters.includes(inputLetter);
+};
+
+export const isLetterInAllLetters = (inputLetter: AlphabetLetter, allLetters: GridOfLetters): boolean => {
+  let result: boolean = false;
+
+  allLetters.forEach((letterArray) => {
+    if (letterArray.includes(inputLetter)) {
+      result = true;
+      return;
+    }
+  });
+
+  return result;
+};
+
+export const isLetterClicked = (letter: AlphabetLetter, allClickedLetters: AlphabetLetter[]): boolean => {
+  return allClickedLetters.includes(letter);
+};
