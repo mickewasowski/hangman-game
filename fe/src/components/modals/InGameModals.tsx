@@ -2,6 +2,7 @@ import { BaseModal } from "./BaseModal.tsx";
 import Button from "../Button.tsx";
 import "./InGameModals.scss";
 import { useNavigate } from "react-router-dom";
+import { useGameContext } from "../../contexts/GameContext.tsx";
 
 interface IPauseProps {
   handleCloseModal: () => void;

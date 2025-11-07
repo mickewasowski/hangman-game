@@ -3,7 +3,7 @@ import Button from "../components/Button.tsx";
 import { type GridOfLetters, type AlphabetLetter } from "../types/Types.ts";
 import { useEffect, useState, type ReactNode } from "react";
 import HeartIcon from "../assets/heart.svg?react";
-import { InGameModal, type InGameModalTypes } from "../types/Types.ts";
+import { InGameModal } from "../types/Types.ts";
 import "./GamePlay.scss";
 import {
   LooseModal,
@@ -20,8 +20,8 @@ const GamePlay = () => {
   const [allClickedLetters, setAllClickedLetters] = useState<AlphabetLetter[]>(
     [],
   );
-  const [scoreWidth, setScoreWidth] = useState<number>(100);
-  const { wordToGuess, modal, toggleModal } = useGameContext();
+  const { wordToGuess, health, updateHealth, modal, toggleModal } =
+    useGameContext();
 
   useEffect(() => {
     if (allLetters.length) return;
@@ -37,14 +37,15 @@ const GamePlay = () => {
   }, [allLetters.length, wordToGuess]);
 
   useEffect(() => {
+    const uniqueWordLetters = new Set(allLetters.flat());
     if (guessedLetters.length === 0 || allLetters.flat().length === 0) return;
 
-    if (guessedLetters.length === allLetters.flat().length) {
+    if ([...uniqueWordLetters].every((x) => guessedLetters.includes(x))) {
       toggleModal(InGameModal.Win);
       return;
     }
 
-    if (guessedLetters.length < allLetters.flat().length && scoreWidth === 0) {
+    if (guessedLetters.length < uniqueWordLetters.size && health === 0) {
       toggleModal(InGameModal.Loose);
       return;
     }
@@ -69,9 +70,8 @@ const GamePlay = () => {
         return [...prev, letter];
       });
     } else {
-      setScoreWidth((prev) => {
-        return prev - WRONG_GUESS_REDUCTION_INDEX;
-      });
+      const newHealth = health - WRONG_GUESS_REDUCTION_INDEX;
+      updateHealth(newHealth);
     }
 
     setAllClickedLetters((prev) => {
@@ -126,7 +126,7 @@ const GamePlay = () => {
     setGuessedLetters([]);
     setAllLetters([]);
     setAllClickedLetters([]);
-    setScoreWidth(100);
+    updateHealth(100);
     toggleModal(null);
   };
 
@@ -151,12 +151,14 @@ const GamePlay = () => {
     <>
       <div className="GamePlay">
         <header className="GamePlay__header">
-          <MenuTitleButton clickHandler={() => toggleModal(InGameModal.Pause)} />
+          <MenuTitleButton
+            clickHandler={() => toggleModal(InGameModal.Pause)}
+          />
           <div className="GamePlay__header__lives">
             <div className="GamePlay__header__lives__healthbar-wrapper">
               <span
                 className="GamePlay__header__lives__healthbar-wrapper__score"
-                style={{ width: scoreWidth + "%" }}
+                style={{ width: health + "%" }}
               ></span>
             </div>
             <div className="GamePlay__header__lives__heart">

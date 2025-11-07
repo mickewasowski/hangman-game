@@ -11,6 +11,8 @@ type GameContextType = {
   modal: Modal;
   selectedCategory: string;
   wordToGuess: string;
+  health: number;
+  updateHealth: (input: number) => void;
   setUserCategory: (input: string) => void;
   toggleModal: (modalType: InGameModal | null) => void;
 };
@@ -21,6 +23,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   const [category, setCategory] = useState("");
   const [word, setWord] = useState("");
   const [modal, setModal] = useState<Modal>({ type: null, open: false });
+  const [health, setHealth] = useState(100);
 
   const setUserCategory = (input: string) => {
     if (!input) return;
@@ -50,12 +53,20 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     setModal({ type: input, open: true });
   };
 
+  const handleHealthUpdate = (newHealth: number) => {
+    if (newHealth < 0 || newHealth > 100) return;
+
+    setHealth(newHealth);
+  };
+
   const value: GameContextType = {
     modal: modal,
     selectedCategory: category,
-    setUserCategory,
     wordToGuess: word,
+    health,
+    setUserCategory,
     toggleModal: handleSetModal,
+    updateHealth: handleHealthUpdate,
   };
 
   return (
