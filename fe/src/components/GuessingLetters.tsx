@@ -49,9 +49,9 @@ export const GuessingLetters = () => {
     }
   }, [allClickedLetters]);
 
-  const handleKeypress = (event) => {
-    event.preventDefault();
-    const pressedKey = event.key;
+  const handleKeypress = (e) => {
+    e.preventDefault();
+    const pressedKey = e.key;
     letterKeyPress(pressedKey);
   };
 
@@ -70,9 +70,7 @@ export const GuessingLetters = () => {
             </p>
           );
         })}
-        {i < allLetters.length - 1 && (
-          <div className="spacer" />
-        )}
+        {i < allLetters.length - 1 && <div className="spacer" />}
       </div>
     ));
   };
