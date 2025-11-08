@@ -78,9 +78,8 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
       setGuessedLetters((prev) => {
         return [...prev, inputLetter];
       });
-    } else {
-      const newHealth = health - WRONG_GUESS_REDUCTION_INDEX;
-      handleHealthUpdate(newHealth);
+    } else if (!included && !isLetterClicked(inputLetter, allClickedLetters)) {
+      handleHealthUpdate();
     }
 
     setAllClickedLetters((prev) => {
@@ -93,6 +92,8 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 
     if (/^[a-zA-Z]$/.test(pressedKey)) {
       letterClick(pressedKey.toLowerCase() as AlphabetLetter);
+    } else {
+      handleHealthUpdate();
     }
   };
 
@@ -106,6 +107,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     setGuessedLetters([]);
     setAllLetters([]);
     setAllClickedLetters([]);
+    setHealth(100);
   };
 
   const resetModal = () => setModal({ type: null, open: false });
@@ -118,10 +120,14 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     setModal({ type: input, open: true });
   };
 
-  const handleHealthUpdate = (newHealth: number) => {
-    if (newHealth < 0 || newHealth > 100) return;
+  const handleHealthUpdate = () => {
+    setHealth((prevHealth) => {
+      const newHealth = prevHealth - WRONG_GUESS_REDUCTION_INDEX;
 
-    setHealth(newHealth);
+      if (newHealth < 0) return prevHealth;
+
+      return newHealth;
+    });
   };
 
   const value: GameContextType = {

@@ -10,7 +10,7 @@ interface IPauseProps {
 
 const PauseModal = ({ handleCloseModal }: IPauseProps) => {
   const navigate = useNavigate();
-  const {resetLetterStates} = useGameContext();
+  const { resetLetterStates } = useGameContext();
 
   const quitGame = () => {
     navigate("/");
@@ -100,10 +100,12 @@ const WinModal = ({ playAgain }: { playAgain: () => void }) => {
 
 const LooseModal = ({ playAgain }: { playAgain: () => void }) => {
   const navigate = useNavigate();
-  const { selectedCategory, setUserCategory } = useGameContext();
+  const { selectedCategory, setUserCategory, resetLetterStates } =
+    useGameContext();
 
   const quitGame = () => {
     navigate("/");
+    resetLetterStates();
   };
 
   const handlePlayAgain = () => {
@@ -113,6 +115,7 @@ const LooseModal = ({ playAgain }: { playAgain: () => void }) => {
 
   const newCategory = () => {
     navigate("/categories");
+    resetLetterStates();
   };
 
   return (
