@@ -25,6 +25,14 @@ export const GuessingLetters = () => {
     if (allLetters.length === 0 && selectedCategory) {
       setUserCategory(selectedCategory);
     }
+  }, [allLetters.length, wordToGuess]);
+
+  useEffect(() => {
+    const handleKeypress = (e) => {
+      e.preventDefault();
+      const pressedKey = e.key;
+      letterKeyPress(pressedKey);
+    };
 
     window.addEventListener("keydown", handleKeypress);
 
@@ -32,7 +40,7 @@ export const GuessingLetters = () => {
       window.removeEventListener("keydown", handleKeypress);
       toggleModal(null);
     };
-  }, [allLetters.length, wordToGuess]);
+  }, [letterClick]);
 
   useEffect(() => {
     const uniqueWordLetters = new Set(allLetters.flat());
@@ -48,12 +56,6 @@ export const GuessingLetters = () => {
       return;
     }
   }, [allClickedLetters]);
-
-  const handleKeypress = (e) => {
-    e.preventDefault();
-    const pressedKey = e.key;
-    letterKeyPress(pressedKey);
-  };
 
   const renderAllWordsCharacterPlaceholders = (): ReactNode => {
     return allLetters.map((chars, i) => (

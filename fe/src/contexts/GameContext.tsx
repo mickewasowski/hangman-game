@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useState, type ReactNode } from "react";
 import { CATEGORIES } from "../categories";
 import type {
   AlphabetLetter,
@@ -71,24 +71,33 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     setWordToGuess(input);
   };
 
-  const letterClick = (inputLetter: AlphabetLetter) => {
+  const letterClick = useCallback((inputLetter: AlphabetLetter) => {
     const included = isLetterInAllLetters(inputLetter, allLetters);
+    const clicked = checkIsLetterClicked(inputLetter);
+
+    // console.log('guessed', guessedLetters);
+    // console.log('allClickedLetters', allClickedLetters);
+
+    if (!included && clicked) return;
 
     if (included) {
       setGuessedLetters((prev) => {
         return [...prev, inputLetter];
       });
-    } else if (!included && !isLetterClicked(inputLetter, allClickedLetters)) {
+    } else {
       handleHealthUpdate();
     }
 
     setAllClickedLetters((prev) => {
-      return [...prev, inputLetter];
+      const newState = [...prev, inputLetter];
+      return newState;
     });
-  };
+  }, [allClickedLetters, guessedLetters, allLetters]);
 
   const letterKeyPress = (pressedKey: AlphabetLetter) => {
-    if (isLetterClicked(pressedKey, allClickedLetters)) return;
+    console.log('guessed', guessedLetters);
+    console.log('allClickedLetters', allClickedLetters);
+    if (checkIsLetterClicked(pressedKey)) return;
 
     const isValidLetter = /^[a-zA-Z]$/.test(pressedKey);
 
