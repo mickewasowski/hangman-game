@@ -10,13 +10,16 @@ interface IPauseProps {
 
 const PauseModal = ({ handleCloseModal }: IPauseProps) => {
   const navigate = useNavigate();
+  const {resetLetterStates} = useGameContext();
 
   const quitGame = () => {
     navigate("/");
+    resetLetterStates();
   };
 
   const newCategory = () => {
     navigate("/categories");
+    resetLetterStates();
   };
 
   const resume = () => {
