@@ -36,7 +36,7 @@ export const GuessingLetters = () => {
 
   useEffect(() => {
     const uniqueWordLetters = new Set(allLetters.flat());
-    if (guessedLetters.length === 0 || allLetters.flat().length === 0) return;
+    if (allLetters.flat().length === 0) return;
 
     if ([...uniqueWordLetters].every((x) => guessedLetters.includes(x))) {
       toggleModal(InGameModal.Win);
