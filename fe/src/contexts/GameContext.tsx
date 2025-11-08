@@ -90,11 +90,11 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   const letterKeyPress = (pressedKey: AlphabetLetter) => {
     if (isLetterClicked(pressedKey, allClickedLetters)) return;
 
-    if (/^[a-zA-Z]$/.test(pressedKey)) {
-      letterClick(pressedKey.toLowerCase() as AlphabetLetter);
-    } else {
-      handleHealthUpdate();
-    }
+    const isValidLetter = /^[a-zA-Z]$/.test(pressedKey);
+
+    if (!isValidLetter) return;
+
+    letterClick(pressedKey.toLowerCase() as AlphabetLetter);
   };
 
   const checkIsLetterClicked = (letter: AlphabetLetter): boolean =>
