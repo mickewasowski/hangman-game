@@ -58,6 +58,9 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     const word: string = allCategoryWords[wordIndex];
 
     setWord(word);
+
+    const chars = getCharGrid(word);
+    setAllLetters(chars);
   };
 
   const setUserCategory = (input: string) => {
@@ -66,9 +69,6 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     setCategory(input);
 
     setWordToGuess(input);
-
-    const chars = getCharGrid(input);
-    setAllLetters(chars);
   };
 
   const letterClick = (inputLetter: AlphabetLetter) => {
