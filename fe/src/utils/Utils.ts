@@ -45,9 +45,9 @@ export const alphabetLetters: AlphabetLetter[] = [
   "z",
 ];
 
-export const isLetterGuessed = (inputLetter: AlphabetLetter, guessedLetters: AlphabetLetter[]): boolean => {
-  return guessedLetters.includes(inputLetter);
-};
+export const isLetterInArray = (inputLetter: AlphabetLetter, array: AlphabetLetter[]): boolean => {
+  return array.includes(inputLetter);
+}
 
 export const isLetterInAllLetters = (inputLetter: AlphabetLetter, allLetters: GridOfLetters): boolean => {
   let result: boolean = false;
@@ -62,6 +62,3 @@ export const isLetterInAllLetters = (inputLetter: AlphabetLetter, allLetters: Gr
   return result;
 };
 
-export const isLetterClicked = (letter: AlphabetLetter, allClickedLetters: AlphabetLetter[]): boolean => {
-  return allClickedLetters.includes(letter);
-};

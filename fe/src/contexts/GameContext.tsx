@@ -7,8 +7,7 @@ import type {
 } from "../types/Types";
 import {
   getCharGrid,
-  isLetterGuessed,
-  isLetterClicked,
+  isLetterInArray,
   isLetterInAllLetters,
 } from "../utils/Utils";
 
@@ -75,9 +74,6 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     const included = isLetterInAllLetters(inputLetter, allLetters);
     const clicked = checkIsLetterClicked(inputLetter);
 
-    // console.log('guessed', guessedLetters);
-    // console.log('allClickedLetters', allClickedLetters);
-
     if (!included && clicked) return;
 
     if (included) {
@@ -107,10 +103,10 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const checkIsLetterClicked = (letter: AlphabetLetter): boolean =>
-    isLetterClicked(letter, allClickedLetters);
+    isLetterInArray(letter, allClickedLetters);
 
   const checkIsLetterGuessed = (letter: AlphabetLetter): boolean =>
-    isLetterGuessed(letter, guessedLetters);
+    isLetterInArray(letter, guessedLetters);
 
   const resetLetterStates = () => {
     setGuessedLetters([]);
